@@ -8,7 +8,7 @@ dotenv.config({ path: './config.env' });
 mongoose.connect('mongodb://localhost/tour').then(() => console.log('DB connection successfull'));
 
 // READ JSON FILE
-const tours = JSON.parse(fs.readFileSync(`${__dirname}/tours-simple.json`, 'utf-8'));
+const tours = JSON.parse(fs.readFileSync(`${__dirname}/tours.json`, 'utf-8'));
 console.log(tours);
 
 // IMPORT DATA INTO DB
