@@ -1,10 +1,9 @@
 const fs = require('fs');
 const Tour = require('../models/tourModel');
-const mongoose = require('mongoose');
 // const tours = JSON.parse(fs.readFileSync(`${__dirname}/../dev-data/data/tours-simple.json`));
-const APIFeatures = require('../utills/apiFeatures');
-const catchAsync = require('../utills/catchAsync');
-const AppError = require('../utills/appError');
+const APIFeatures = require('../utils/apiFeatures');
+const catchAsync = require('../utils/catchAsync');
+const AppError = require('../utils/appError');
 
 exports.aliasTopTours = (req, res, next) => {
   req.query.limit = '5';
@@ -46,12 +45,11 @@ exports.createTour = catchAsync(async (req, res, next) => {
 });
 exports.getTour = catchAsync(async (req, res, next) => {
   // find a single tour by its ID
-  const tour = await Tour.findById(req.params.id).populate('guides');
-  console.log(tour);
+  const tour = await Tour.findById(req.params.id).populate('reviews');
+  // console.log(tour);
 
   if (!tour) {
-    // return next(new AppError('No tour found with that ID', 404));
-    return res.send('wrong');
+    return next(new AppError('No tour found with that ID', 404));
   }
   // Tour.findOne({_id: req.params.id})
   res.status(200).json({

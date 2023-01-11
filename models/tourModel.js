@@ -118,11 +118,17 @@ const tourSchema = new mongoose.Schema(
   }
 );
 
-// tourSchema.virtual('durationWeeks').get(function (next) {
-//   // console.log('a');
-//   return this.duration / 7;
-//   next();
-// });
+tourSchema.virtual('durationWeeks').get(function (next) {
+  // console.log('a');
+  return this.duration / 7;
+});
+
+// virtual populate
+tourSchema.virtual('reviews', {
+  ref: 'Review',
+  foreignField: 'tour',
+  localField: '_id',
+});
 
 // Document Middleware: runs before .save() and .create()
 // with the exception of insertMany()
@@ -150,6 +156,14 @@ tourSchema.pre('save', async function (next) {
 tourSchema.pre(/^find/, function (next) {
   this.find({ secretTour: { $ne: true } });
   this.start = Date.now();
+  next();
+});
+
+tourSchema.pre(/^find/, function (next) {
+  this.populate({
+    path: 'guides',
+    select: '-__v -passwordChangedAt',
+  });
   next();
 });
 

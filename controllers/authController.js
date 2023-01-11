@@ -1,10 +1,10 @@
 const crypto = require('crypto');
 const { promisify } = require('util');
 const User = require('../models/userModel');
-const AppError = require('../utills/appError');
-const catchAsync = require('../utills/catchAsync');
+const AppError = require('../utils/appError');
+const catchAsync = require('../utils/catchAsync');
 const jwt = require('jsonwebtoken');
-const sendEmail = require('../utills/email');
+const sendEmail = require('../utils/email');
 
 // A function to create a JWT token
 const signToken = (id) => {
