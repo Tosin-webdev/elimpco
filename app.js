@@ -11,13 +11,14 @@ const tourRouter = require('./routes/tourRoutes');
 const AppError = require('./utils/appError');
 const userRouter = require('./routes/userRoutes');
 const reviewRouter = require('./routes/reviewRoutes');
+const viewRouter = require('./routes/viewRoutes');
 
 const helmet = require('helmet');
 
 const app = express();
 require('dotenv').config();
 
-app.set('view engine', 'pug');
+app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
 // Global middlewares
@@ -69,10 +70,8 @@ app.use((req, res, next) => {
 });
 
 // 3) ROUTES
-app.get('/', (req, res) => {
-  res.status(200).render('base');
-});
 
+app.use('/', viewRouter);
 app.use('/api/v1/tours', tourRouter);
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/reviews', reviewRouter);

@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  data-layout="vertical"
+  data-topbar="light"
+  data-sidebar="dark"
+  data-sidebar-size="lg"
+  data-sidebar-image="none"
+  data-preloader="disable"
+>
+  <head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
+
+    <%- include('./partials/title-meta', {"title": "Home"})%>
+
+    <!--Swiper slider css-->
+    <!-- <link href="assets/libs/swiper/swiper-bundle.min.css" rel="stylesheet" type="text/css" /> -->
+    <span> <%- include('./partials/head-css')%></span>
+  </head>
+
+  <body data-bs-spy="scroll" data-bs-target="#navbar-example">
+    <div class="layout-wrapper landing">
+      <nav class="navbar navbar-expand-lg navbar-landing fixed-top job-navbar" id="navbar">
+        <div class="container-fluid custom-container">
+          <a class="navbar-brand" href="index.html">
+            <img src="assets/images/logo-dark.png" class="card-logo card-logo-dark" alt="logo dark" height="17" />
+            <img src="assets/images/logo-light.png" class="card-logo card-logo-light" alt="logo light" height="17" />
+          </a>
+          <button
+            class="navbar-toggler py-0 fs-20 text-body"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <i class="mdi mdi-menu"></i>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mx-auto mt-2 mt-lg-0" id="navbar-example">
+              <!-- <li class="nav-item">
+                <a class="nav-link active" href="#hero">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#process">Process</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#categories">Categories</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#findJob">Find Jobs</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#candidates">Candidates</a>
+              </li> -->
+              <!-- <li class="nav-item">
+                <a class="nav-link" href="#blog">Blog</a>
+              </li> -->
+            </ul>
+
+            <div class="">
+              <a href="auth-signin-basic.html" class="btn btn-soft-primary"
+                ><i class="ri-user-3-line align-bottom me-1"></i> Login</a
+              >
+              <a href="auth-signin-basic.html" class="btn btn-soft-primary"
+                ><i class="ri-user-3-line align-bottom me-1"></i> Register</a
+              >
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      <div class="container">
+        <div class="col-xxl-9">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title mb-3">About</h5>
+              <p>
+                Hi I'm Anna Adame, It will be as simple as Occidental; in fact, it will be Occidental. To an English
+                person, it will seem like simplified English, as a skeptical Cambridge friend of mine told me what
+                Occidental is European languages are members of the same family.
+              </p>
+              <p>
+                You always want to make sure that your fonts work well together and try to limit the number of fonts you
+                use to three or less. Experiment and play around with the fonts that you already have in the software
+                you’re working with reputable font websites. This may be the most commonly encountered tip I received
+                from the designers I spoke with. They highly encourage that you use different fonts in one design, but
+                do not over-exaggerate and go overboard.
+              </p>
+              <div class="row">
+                <div class="col-6 col-md-4">
+                  <div class="d-flex mt-4">
+                    <div class="flex-shrink-0 avatar-xs align-self-center me-3">
+                      <div class="avatar-title bg-light rounded-circle fs-16 text-primary">
+                        <i class="ri-user-2-fill"></i>
+                      </div>
+                    </div>
+                    <div class="flex-grow-1 overflow-hidden">
+                      <p class="mb-1">Designation :</p>
+                      <h6 class="text-truncate mb-0">Lead Designer / Developer</h6>
+                    </div>
+                  </div>
+                </div>
+                <!--end col-->
+                <div class="col-6 col-md-4">
+                  <div class="d-flex mt-4">
+                    <div class="flex-shrink-0 avatar-xs align-self-center me-3">
+                      <div class="avatar-title bg-light rounded-circle fs-16 text-primary">
+                        <i class="ri-global-line"></i>
+                      </div>
+                    </div>
+                    <div class="flex-grow-1 overflow-hidden">
+                      <p class="mb-1">Website :</p>
+                      <a href="#" class="fw-semibold">www.velzon.com</a>
+                    </div>
+                  </div>
+                </div>
+                <!--end col-->
+              </div>
+              <!--end row-->
+            </div>
+            <!--end card-body-->
+          </div>
+        </div>
+        <!-- REVIEWS -->
+        <h3 class="m-4 text-center">Reviews</h3>
+        <div class="row">
+          <div class="col-xl-4">
+            <div class="card">
+              <div class="card-body">
+                <h4 class="card-title mb-3">
+                  <i class="ri-user-3-fill align-middle me-1 text-muted"></i> Natasha Carey
+                </h4>
+                <p class="text-muted">
+                  Too much or too little spacing, as in the example below, can make things unpleasant for the reader.
+                  The goal is to make your text as comfortable to read as possible.
+                </p>
+                <p class="text-muted mb-0">
+                  This response is important for our ability to learn from mistakes, but it alsogives rise to
+                  self-criticism.
+                </p>
+              </div>
+              <div class="card-footer text-center">
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star"></i>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-4">
+            <div class="card">
+              <div class="card-body">
+                <h4 class="card-title mb-3">
+                  <i class="ri-user-3-fill align-middle me-1 text-muted"></i> Natasha Carey
+                </h4>
+                <p class="text-muted">
+                  Too much or too little spacing, as in the example below, can make things unpleasant for the reader.
+                  The goal is to make your text as comfortable to read as possible.
+                </p>
+                <p class="text-muted mb-0">
+                  This response is important for our ability to learn from mistakes, but it alsogives rise to
+                  self-criticism.
+                </p>
+              </div>
+              <div class="card-footer text-center">
+                <a href="javascript:void(0);" class="link-secondary"
+                  >View All Notification (2) <i class="ri-arrow-right-s-line align-middle ms-1 lh-1"></i
+                ></a>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-4">
+            <div class="card">
+              <div class="card-body">
+                <h4 class="card-title mb-3">
+                  <i class="ri-user-3-fill align-middle me-1 text-muted"></i> Natasha Carey
+                </h4>
+                <p class="text-muted">
+                  Too much or too little spacing, as in the example below, can make things unpleasant for the reader.
+                  The goal is to make your text as comfortable to read as possible.
+                </p>
+                <p class="text-muted mb-0">
+                  This response is important for our ability to learn from mistakes, but it alsogives rise to
+                  self-criticism.
+                </p>
+              </div>
+              <div class="card-footer text-center">
+                <a href="javascript:void(0);" class="link-secondary"
+                  >View All Notification (2) <i class="ri-arrow-right-s-line align-middle ms-1 lh-1"></i
+                ></a>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-4">
+            <div class="card">
+              <div class="card-body">
+                <h4 class="card-title mb-3">
+                  <i class="ri-user-3-fill align-middle me-1 text-muted"></i> Natasha Carey
+                </h4>
+                <p class="text-muted">
+                  Too much or too little spacing, as in the example below, can make things unpleasant for the reader.
+                  The goal is to make your text as comfortable to read as possible.
+                </p>
+                <p class="text-muted mb-0">
+                  This response is important for our ability to learn from mistakes, but it alsogives rise to
+                  self-criticism.
+                </p>
+              </div>
+              <div class="card-footer text-center">
+                <a href="javascript:void(0);" class="link-secondary"
+                  >View All Notification (2) <i class="ri-arrow-right-s-line align-middle ms-1 lh-1"></i
+                ></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <%- include('./partials/vendor-scripts')%>
+    <!-- swiper js -->
+    <script src="assets/libs/swiper/swiper-bundle.min.js"></script>
+
+    <!-- profile init js -->
+    <script src="assets/js/pages/profile.init.js"></script>
+
+    <!-- App js -->
+    <script src="assets/js/app.js"></script>
+  </body>
+</html>

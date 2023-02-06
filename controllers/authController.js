@@ -23,11 +23,11 @@ const createSendToken = (user, statusCode, res) => {
     // browser(to prevent cross site scripting attack)
     httpOnly: true,
   };
-  if (process.env.NoDE_ENV === 'production') cookingOptions.secure = true;
+  if (process.env.NODE_ENV === 'production') cookingOptions.secure = true;
   res.cookie('jwt', token, cookieOptions);
 
   // remove password from output
-  user.passwords = undefined;
+  user.password = undefined;
   // sends response to client
   res.status(statusCode).json({
     status: 'success',
@@ -67,7 +67,7 @@ exports.login = catchAsync(async (req, res, next) => {
 
   console.log(user.password);
 
-  // checks if user password is correct
+  // checks if user password is correc                                                                                            t
   const correct = await user.correctPassword(password, user.password);
   if (!correct) {
     return next(new AppError('Incorrect email or password', 401));
@@ -169,7 +169,6 @@ exports.forgotPassword = catchAsync(async (req, res, next) => {
 
 exports.resetPassword = catchAsync(async (req, res, next) => {
   // Get user based on the token
-  console.log('abc');
   const hashedToken = crypto.createHash('sha256').update(req.params.token).digest('hex');
 
   // find the user by its hashed token
