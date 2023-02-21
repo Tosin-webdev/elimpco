@@ -241,7 +241,7 @@
                     <li class="list-inline-item"><i class="ri-calendar-line align-bottom me-1"></i> 30 Oct, 2021</li>
                     <li class="list-inline-item"><i class="ri-message-2-line align-bottom me-1"></i> 364 Comment</li>
                   </ul> -->
-                  <a href="javascript:void(0);">
+                  <a href="/tour/<%= tour.slug %>">
                     <h5><%= tour.name %></h5>
                   </a>
                   <p class="text-muted fs-14"><%= tour.summary %></p>
@@ -249,9 +249,10 @@
                   <p>4.5 ratings</p>
 
                   <div>
-                    <a href="#!" class="link-success"
+                    <!-- <a href="#!" class="link-success"
                       >Learn More <i class="ri-arrow-right-line align-bottom ms-1"></i
-                    ></a>
+                    ></a> -->
+                    <a href="/tour/<%= tour.slug %>">Learn more</a>
                   </div>
                 </div>
               </div>

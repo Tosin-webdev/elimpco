@@ -22,9 +22,9 @@
     <div class="layout-wrapper landing">
       <nav class="navbar navbar-expand-lg navbar-landing fixed-top job-navbar" id="navbar">
         <div class="container-fluid custom-container">
-          <a class="navbar-brand" href="index.html">
-            <img src="assets/images/logo-dark.png" class="card-logo card-logo-dark" alt="logo dark" height="17" />
-            <img src="assets/images/logo-light.png" class="card-logo card-logo-light" alt="logo light" height="17" />
+          <a class="navbar-brand" href="/">
+            <img src="/assets/images/logo-dark.png" class="card-logo card-logo-dark" alt="logo dark" height="17" />
+            <img src="/assets/images/logo-light.png" class="card-logo card-logo-light" alt="logo light" height="17" />
           </a>
           <button
             class="navbar-toggler py-0 fs-20 text-body"
@@ -61,10 +61,8 @@
             </ul>
 
             <div class="">
-              <a href="auth-signin-basic.html" class="btn btn-soft-primary"
-                ><i class="ri-user-3-line align-bottom me-1"></i> Login</a
-              >
-              <a href="auth-signin-basic.html" class="btn btn-soft-primary"
+              <a href="/signin" class="btn btn-soft-primary"><i class="ri-user-3-line align-bottom me-1"></i> Login</a>
+              <a href="/signup" class="btn btn-soft-primary"
                 ><i class="ri-user-3-line align-bottom me-1"></i> Register</a
               >
             </div>
@@ -111,10 +109,10 @@
                         <i class="ri-global-line"></i>
                       </div>
                     </div>
-                    <div class="flex-grow-1 overflow-hidden">
+                    <!-- <div class="flex-grow-1 overflow-hidden">
                       <p class="mb-1">Website :</p>
                       <a href="#" class="fw-semibold">www.velzon.com</a>
-                    </div>
+                    </div> -->
                   </div>
                 </div>
                 <!--end col-->
@@ -127,12 +125,21 @@
         <!-- REVIEWS -->
         <h3 class="m-4 text-center">Reviews</h3>
         <div class="row">
+          <% tour.reviews.forEach(review => { %>
+
           <div class="col-xl-4">
             <div class="card">
               <div class="card-body">
-                <h4 class="card-title mb-3">
-                  <i class="ri-user-3-fill align-middle me-1 text-muted"></i> Natasha Carey
-                </h4>
+                <h4 class="card-title mb-3"></h4>
+                <div class="d-flex mb-4 align-items-center">
+                  <div class="flex-shrink-0">
+                    <img src="/assets/images/users/avatar-4.jpg" alt="" class="avatar-sm rounded-circle" />
+                  </div>
+                  <div class="flex-grow-1 ms-2">
+                    <h5 class="card-title mb-1">Natasha Carey</h5>
+                    <p class="text-muted mb-0">Manager</p>
+                  </div>
+                </div>
                 <p class="text-muted">
                   Too much or too little spacing, as in the example below, can make things unpleasant for the reader.
                   The goal is to make your text as comfortable to read as possible.
@@ -143,91 +150,30 @@
                 </p>
               </div>
               <div class="card-footer text-center">
-                <i class="bi bi-star-fill"></i>
+                <% let data = [1, 2, 3, 4, 5] %>
+                
+                <% for(var i=0; i < data.length; i++) { %>
+                <i class="bi bi-star<% review.rating >= data[i] ? '-fill' : "" %>"></i>
                 <i class="bi bi-star-fill"></i>
                 <i class="bi bi-star-fill"></i>
                 <i class="bi bi-star-fill"></i>
                 <i class="bi bi-star"></i>
+                <% } %>
               </div>
             </div>
           </div>
-          <div class="col-xl-4">
-            <div class="card">
-              <div class="card-body">
-                <h4 class="card-title mb-3">
-                  <i class="ri-user-3-fill align-middle me-1 text-muted"></i> Natasha Carey
-                </h4>
-                <p class="text-muted">
-                  Too much or too little spacing, as in the example below, can make things unpleasant for the reader.
-                  The goal is to make your text as comfortable to read as possible.
-                </p>
-                <p class="text-muted mb-0">
-                  This response is important for our ability to learn from mistakes, but it alsogives rise to
-                  self-criticism.
-                </p>
-              </div>
-              <div class="card-footer text-center">
-                <a href="javascript:void(0);" class="link-secondary"
-                  >View All Notification (2) <i class="ri-arrow-right-s-line align-middle ms-1 lh-1"></i
-                ></a>
-              </div>
-            </div>
-          </div>
-          <div class="col-xl-4">
-            <div class="card">
-              <div class="card-body">
-                <h4 class="card-title mb-3">
-                  <i class="ri-user-3-fill align-middle me-1 text-muted"></i> Natasha Carey
-                </h4>
-                <p class="text-muted">
-                  Too much or too little spacing, as in the example below, can make things unpleasant for the reader.
-                  The goal is to make your text as comfortable to read as possible.
-                </p>
-                <p class="text-muted mb-0">
-                  This response is important for our ability to learn from mistakes, but it alsogives rise to
-                  self-criticism.
-                </p>
-              </div>
-              <div class="card-footer text-center">
-                <a href="javascript:void(0);" class="link-secondary"
-                  >View All Notification (2) <i class="ri-arrow-right-s-line align-middle ms-1 lh-1"></i
-                ></a>
-              </div>
-            </div>
-          </div>
-          <div class="col-xl-4">
-            <div class="card">
-              <div class="card-body">
-                <h4 class="card-title mb-3">
-                  <i class="ri-user-3-fill align-middle me-1 text-muted"></i> Natasha Carey
-                </h4>
-                <p class="text-muted">
-                  Too much or too little spacing, as in the example below, can make things unpleasant for the reader.
-                  The goal is to make your text as comfortable to read as possible.
-                </p>
-                <p class="text-muted mb-0">
-                  This response is important for our ability to learn from mistakes, but it alsogives rise to
-                  self-criticism.
-                </p>
-              </div>
-              <div class="card-footer text-center">
-                <a href="javascript:void(0);" class="link-secondary"
-                  >View All Notification (2) <i class="ri-arrow-right-s-line align-middle ms-1 lh-1"></i
-                ></a>
-              </div>
-            </div>
-          </div>
+          <% }) %>
         </div>
       </div>
     </div>
     <%- include('./partials/vendor-scripts')%>
     <!-- swiper js -->
-    <script src="assets/libs/swiper/swiper-bundle.min.js"></script>
+    <script src="/assets/libs/swiper/swiper-bundle.min.js"></script>
 
     <!-- profile init js -->
-    <script src="assets/js/pages/profile.init.js"></script>
+    <script src="/assets/js/pages/profile.init.js"></script>
 
     <!-- App js -->
-    <script src="assets/js/app.js"></script>
+    <script src="/assets/js/app.js"></script>
   </body>
 </html>
