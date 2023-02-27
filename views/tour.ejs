@@ -153,11 +153,11 @@
                 <% let data = [1, 2, 3, 4, 5] %>
                 
                 <% for(var i=0; i < data.length; i++) { %>
-                <i class="bi bi-star<% review.rating >= data[i] ? '-fill' : "" %>"></i>
+                <i class="bi bi-star<%= review.rating >= data[i] ? '-fill' : "" %>"></i>
+                <!-- <i class="bi bi-star-fill"></i>
                 <i class="bi bi-star-fill"></i>
                 <i class="bi bi-star-fill"></i>
-                <i class="bi bi-star-fill"></i>
-                <i class="bi bi-star"></i>
+                <i class="bi bi-star"></i> -->
                 <% } %>
               </div>
             </div>
