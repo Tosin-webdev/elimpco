@@ -8,8 +8,20 @@ const login = async (email, password) => {
       headers: { 'Content-Type': 'application/json' },
     });
     const data = await res.json();
+
     console.log(data);
+    if (data.status == 'success') {
+      alert('logged in successfully');
+      window.setTimeout(() => {
+        location.assign('/');
+      }, 1500);
+    }
+
+    if (data.status === 'fail') {
+      alert(data.message);
+    }
   } catch (err) {
+    alert(err);
     console.log(err);
   }
 };
