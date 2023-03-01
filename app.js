@@ -80,12 +80,16 @@ app.use('/api/v1/tours', tourRouter);
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/reviews', reviewRouter);
 
-app.all('*', (req, res, next) => {
-  // const err = new Error(`Can't find ${req.originalUrl} on this server!`);
-  // err.status = 'fail';
-  // err.statusCode = 404;
+// app.all('*', (req, res, next) => {
+//   // const err = new Error(`Can't find ${req.originalUrl} on this server!`);
+//   // err.status = 'fail';
+//   // err.statusCode = 404;
 
-  next(new AppError(`Can't find ${req.originalUrl} on this server!`));
+//   next(new AppError(`Can't find ${req.originalUrl} on this server!`));
+// });
+
+app.use((req, res) => {
+  res.status(404).render('404');
 });
 
 app.use(globalErrorHandler);

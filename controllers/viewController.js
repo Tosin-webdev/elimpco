@@ -2,14 +2,14 @@ const Tour = require('../models/tourModel');
 const AppError = require('../utils/appError');
 const catchAsync = require('../utils/catchAsync');
 
-exports.signup = catchAsync((req, res) => {
+exports.signup = (req, res) => {
   console.log('cool');
   res.status(200).render('signup', {
     title: 'All Tours',
   });
-});
+};
 
-exports.getOverview = catchAsync(async (req, res) => {
+exports.getOverview = async (req, res) => {
   // Get tour data from collection
   const tours = await Tour.find();
 
@@ -18,9 +18,9 @@ exports.getOverview = catchAsync(async (req, res) => {
     title: 'All Tours',
     tours,
   });
-});
+};
 
-exports.signin = catchAsync(async (req, res) => {
+exports.signin = (req, res) => {
   // Get tour data from collection
   // const tours = await Tour.find();
 
@@ -30,7 +30,7 @@ exports.signin = catchAsync(async (req, res) => {
   res.status(200).render('signin', {
     title: 'All Tours',
   });
-});
+};
 
 exports.getTour = catchAsync(async (req, res, next) => {
   // // Get the data, for the requested tour including reviews and guides
@@ -48,3 +48,13 @@ exports.getTour = catchAsync(async (req, res, next) => {
     tour,
   });
 });
+
+exports.errorPage = (req, res) => {
+  res.status(404).render('404');
+};
+
+exports.getMe = async (req, res) => {
+  res.status(200).render('profile', {
+    title: 'Profile page',
+  });
+};
