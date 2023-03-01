@@ -7,6 +7,7 @@ const xss = require('xss-clean');
 const hpp = require('hpp');
 const cookieParser = require('cookie-parser');
 
+const authController = require('./controllers/authController');
 const globalErrorHandler = require('./controllers/errorController');
 const tourRouter = require('./routes/tourRoutes');
 const AppError = require('./utils/appError');
@@ -71,6 +72,8 @@ app.use((req, res, next) => {
 });
 
 // 3) ROUTES
+
+// app.get('*', authController.isLoggedIn);
 
 app.use('/', viewRouter);
 app.use('/api/v1/tours', tourRouter);

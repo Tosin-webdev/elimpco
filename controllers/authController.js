@@ -76,12 +76,18 @@ exports.login = catchAsync(async (req, res, next) => {
   createSendToken(user, 200, res);
 });
 
-exports.logout = (req, res) => {
-  res.cookie('jwt', 'loggedOut', {
-    expires: new Date(Date.now() * 10 * 1000),
-    httpOnly: true,
-  });
-  res.status(200).json({ status: 'success' });
+// exports.logout = (req, res) => {
+//   res.cookie('jwt', 'loggedOut', {
+//     expires: new Date(Date.now() * 10 * 1000),
+//     httpOnly: true,
+//   });
+//   res.status(200).json({ status: 'success' });
+// };
+
+module.exports.logout = (req, res) => {
+  res.cookie('jwt', '', { maxAge: 1 });
+  // res.status(200).json({ status: 'success' });
+  res.redirect('/');
 };
 
 exports.protect = catchAsync(async (req, res, next) => {
@@ -143,6 +149,7 @@ exports.isLoggedIn = async (req, res, next) => {
       res.locals.user = currentUser;
       return next();
     } catch (err) {
+      res.locals.user = null;
       return next();
     }
   }

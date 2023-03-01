@@ -1,3 +1,5 @@
+// const logoutButton = document.querySelector('.btn-logout');
+
 const login = async (email, password) => {
   //   alert(email, password);
   console.log(email, password);
@@ -57,3 +59,7 @@ document.querySelector('.form').addEventListener('submit', (e) => {
   const password = document.getElementById('password-input').value;
   login(email, password);
 });
+
+// if (logoutButton) {
+document.querySelector('.btn-logout').addEventListener('click', logout);
+// }
