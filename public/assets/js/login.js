@@ -11,19 +11,30 @@ const login = async (email, password) => {
 
     console.log(data);
     if (data.status == 'success') {
-      alert('logged in successfully');
+      showAlert('success', 'logged in successfully');
       window.setTimeout(() => {
         location.assign('/');
       }, 1500);
     }
 
     if (data.status === 'fail') {
-      alert(data.message);
+      showAlert('error', data.message);
     }
   } catch (err) {
     alert(err);
     console.log(err);
   }
+};
+
+const hideAlert = () => {
+  const el = document.querySelector('.alert');
+  if (el) el.parentElement.removeChild(el);
+};
+
+const showAlert = (type, msg) => {
+  const markup = `<div class="alert alert--${type}">${msg}</div>`;
+  document.querySelector('body').insertAdjacentHTML('afterbegin', markup);
+  window.setTimeout(hideAlert, 5000);
 };
 
 document.querySelector('.form').addEventListener('submit', (e) => {
