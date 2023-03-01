@@ -26,6 +26,20 @@ const login = async (email, password) => {
   }
 };
 
+const logout = async () => {
+  try {
+    const res = await fetch('/api/v1/users/logout', {
+      method: 'GET',
+      headers: { 'Content-Type': 'application/json' },
+    });
+    const data = await res.json();
+    if (data.status == 'success') location.reload(true);
+    if (data.status == 'fail') showAlert('error', 'Error logging out! Try again');
+  } catch (err) {
+    showAlert('error', 'Error logging out! pls Try again');
+  }
+};
+
 const hideAlert = () => {
   const el = document.querySelector('.alert');
   if (el) el.parentElement.removeChild(el);
