@@ -1,9 +1,10 @@
 const Tour = require('../models/tourModel');
+const User = require('../models/userModel');
 const AppError = require('../utils/appError');
 const catchAsync = require('../utils/catchAsync');
 
 exports.signup = (req, res) => {
-  console.log('cool');
+  // console.log('cool');
   res.status(200).render('signup', {
     title: 'All Tours',
   });
@@ -22,8 +23,6 @@ exports.getOverview = async (req, res) => {
 
 exports.signin = (req, res) => {
   // Get tour data from collection
-  // const tours = await Tour.find();
-
   //   Build template
 
   // render the template
@@ -54,10 +53,38 @@ exports.errorPage = (req, res) => {
 };
 
 exports.getMe = async (req, res) => {
+  const updatedUser = await User.findByIdAndUpdate(
+    req.user._id,
+    {
+      name: req.body.name,
+      email: req.body.email,
+    },
+    {
+      new: true,
+      runValidators: true,
+    }
+  );
+
   res.status(200).render('profile', {
     title: 'Profile page',
+    user: updatedUser,
   });
 };
-exports.updateUserData = async (req, res) => {
-  console.log();
-};
+// exports.updateUserData = async (req, res) => {
+//   const updatedUser = await User.findByIdAndUpdate(
+//     req.user.id,
+//     {
+//       name: req.body.name,
+//       email: req.body.email,
+//     },
+//     {
+//       new: true,
+//       runValidators: true,
+//     }
+//   );
+
+//   res.status(200).render('profile', {
+//     title: 'Your account',
+//     user: updatedUser,
+//   });
+// };

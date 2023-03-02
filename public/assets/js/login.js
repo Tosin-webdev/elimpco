@@ -91,4 +91,5 @@ document.querySelector('.btn-logout').addEventListener('click', logout);
 userDataForm.addEventListener('submit', (e) => {
   const name = document.getElementById('name').value;
   const email = document.getElementById('emailInput').value;
+  updateData(name, email);
 });
