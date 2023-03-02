@@ -58,3 +58,6 @@ exports.getMe = async (req, res) => {
     title: 'Profile page',
   });
 };
+exports.updateUserData = async (req, res) => {
+  console.log();
+};

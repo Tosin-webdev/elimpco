@@ -12,6 +12,7 @@ router.get('/signin', viewsController.signin);
 router.get('/tour/:slug', viewsController.getTour);
 router.get('/me', viewsController.getMe);
 router.get('/404', viewsController.errorPage);
+router.post('/submit-user-data', viewsController.updateUserData);
 
 module.exports = router;
 // api/v1/tours/5c88fa8cf4afda39709c2970

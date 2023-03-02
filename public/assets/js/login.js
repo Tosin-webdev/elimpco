@@ -1,5 +1,5 @@
 // const logoutButton = document.querySelector('.btn-logout');
-
+const userDataForm = document.querySelector('profile-me');
 const login = async (email, password) => {
   //   alert(email, password);
   console.log(email, password);
@@ -17,6 +17,30 @@ const login = async (email, password) => {
       window.setTimeout(() => {
         location.assign('/');
       }, 1500);
+    }
+
+    if (data.status === 'fail') {
+      showAlert('error', data.message);
+    }
+  } catch (err) {
+    alert(err);
+    console.log(err);
+  }
+};
+const updateData = async (name, email) => {
+  //   alert(name, email);
+  console.log(name, email);
+  try {
+    const res = await fetch('/api/v1/users/updateMe', {
+      method: 'PACTH',
+      body: JSON.stringify({ name, email }),
+      headers: { 'Content-Type': 'application/json' },
+    });
+    const data = await res.json();
+
+    console.log(data);
+    if (data.status == 'success') {
+      showAlert('success', 'profile updated successfully');
     }
 
     if (data.status === 'fail') {
@@ -63,3 +87,8 @@ document.querySelector('.form').addEventListener('submit', (e) => {
 // if (logoutButton) {
 document.querySelector('.btn-logout').addEventListener('click', logout);
 // }
+
+userDataForm.addEventListener('submit', (e) => {
+  const name = document.getElementById('name').value;
+  const email = document.getElementById('emailInput').value;
+});
