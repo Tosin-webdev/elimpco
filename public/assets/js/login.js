@@ -1,5 +1,5 @@
 // const logoutButton = document.querySelector('.btn-logout');
-const userDataForm = document.querySelector('profile-me');
+// const userDataForm = document.querySelector('.profile-me');
 const login = async (email, password) => {
   //   alert(email, password);
   console.log(email, password);
@@ -27,30 +27,30 @@ const login = async (email, password) => {
     console.log(err);
   }
 };
-const updateData = async (name, email) => {
-  //   alert(name, email);
-  console.log(name, email);
-  try {
-    const res = await fetch('/api/v1/users/updateMe', {
-      method: 'PACTH',
-      body: JSON.stringify({ name, email }),
-      headers: { 'Content-Type': 'application/json' },
-    });
-    const data = await res.json();
+// const updateData = async (name, email) => {
+//   //   alert(name, email);
+//   console.log(name, email);
+//   try {
+//     const res = await fetch('/api/v1/users/updateMe', {
+//       method: 'PATCH',
+//       body: JSON.stringify({ name, email }),
+//       headers: { 'Content-Type': 'application/json' },
+//     });
+//     const data = await res.json();
 
-    console.log(data);
-    if (data.status == 'success') {
-      showAlert('success', 'profile updated successfully');
-    }
+//     console.log(data);
+//     // if (data.status == 'success') {
+//     //   showAlert('success', 'profile updated successfully');
+//     // }
 
-    if (data.status === 'fail') {
-      showAlert('error', data.message);
-    }
-  } catch (err) {
-    alert(err);
-    console.log(err);
-  }
-};
+//     // if (data.status === 'fail') {
+//     //   showAlert('error', data.message);
+//     // }
+//   } catch (err) {
+//     alert(err);
+//     console.log(err);
+//   }
+// };
 
 const logout = async () => {
   try {
@@ -87,9 +87,11 @@ document.querySelector('.form').addEventListener('submit', (e) => {
 // if (logoutButton) {
 document.querySelector('.btn-logout').addEventListener('click', logout);
 // }
+// document.querySelector('.profile-me').addEventListener('submit', (e) => {
+//   e.preventDefault();
+//   const name = document.getElementById('name').value;
+//   const email = document.getElementById('emailInput').value;
+//   console.log(name, email);
 
-userDataForm.addEventListener('submit', (e) => {
-  const name = document.getElementById('name').value;
-  const email = document.getElementById('emailInput').value;
-  updateData(name, email);
-});
+//   updateData(name, email);
+// });
