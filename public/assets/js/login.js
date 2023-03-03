@@ -1,5 +1,4 @@
 // const logoutButton = document.querySelector('.btn-logout');
-// const userDataForm = document.querySelector('.profile-me');
 const login = async (email, password) => {
   //   alert(email, password);
   console.log(email, password);
@@ -27,30 +26,58 @@ const login = async (email, password) => {
     console.log(err);
   }
 };
-// const updateData = async (name, email) => {
-//   //   alert(name, email);
-//   console.log(name, email);
-//   try {
-//     const res = await fetch('/api/v1/users/updateMe', {
-//       method: 'PATCH',
-//       body: JSON.stringify({ name, email }),
-//       headers: { 'Content-Type': 'application/json' },
-//     });
-//     const data = await res.json();
 
-//     console.log(data);
-//     // if (data.status == 'success') {
-//     //   showAlert('success', 'profile updated successfully');
-//     // }
+const userDataForm = document.querySelector('.profile-update');
 
-//     // if (data.status === 'fail') {
-//     //   showAlert('error', data.message);
-//     // }
-//   } catch (err) {
-//     alert(err);
-//     console.log(err);
-//   }
-// };
+userDataForm.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  // alert('loo');
+  const name = userDataForm.name.value;
+  const email = userDataForm.emailInput.value;
+
+  try {
+    const res = await fetch('/api/v1/users/updateMe', {
+      method: 'PATCH',
+      body: JSON.stringify({ name, email }),
+      headers: { 'Content-Type': 'application/json' },
+    });
+
+    const data = await res.json();
+    console.log(data);
+    if (data.status == 'success') {
+      alert('done');
+    }
+  } catch (error) {
+    alert(error);
+  }
+});
+
+const userPasswordForm = document.querySelector('.change-password');
+
+userPasswordForm.addEventListener('submit', async (e) => {
+  e.preventDefault();
+
+  const passwordCurrent = document.getElementById('oldpasswordInput').value;
+  const password = document.getElementById('newpasswordInput').value;
+  const passwordConfirm = document.getElementById('confirmpasswordInput').value;
+
+  // console.log(passwordCurrent, password, passwordConfirm);
+  try {
+    const res = await fetch('/api/v1/users/updateMyPassword', {
+      method: 'PATCH',
+      body: JSON.stringify({ passwordCurrent, password, passwordConfirm }),
+      headers: { 'Content-Type': 'application/json' },
+    });
+    const data = await res.json();
+    console.log(data);
+    if (data.status == 'success') {
+      showAlert('success', 'Password successfully updated');
+    }
+    if (data.status == 'fail') showAlert('error', data.message);
+  } catch (error) {
+    alert(error);
+  }
+});
 
 const logout = async () => {
   try {
@@ -95,3 +122,28 @@ document.querySelector('.btn-logout').addEventListener('click', logout);
 
 //   updateData(name, email);
 // });
+
+// const updateData = async (name, email) => {
+//   //   alert(name, email);
+//   console.log(name, email);
+//   try {
+//     const res = await fetch('/api/v1/users/updateMe', {
+//       method: 'PATCH',
+//       body: JSON.stringify({ name, email }),
+//       headers: { 'Content-Type': 'application/json' },
+//     });
+//     const data = await res.json();
+
+//     console.log(data);
+//     // if (data.status == 'success') {
+//     //   showAlert('success', 'profile updated successfully');
+//     // }
+
+//     // if (data.status === 'fail') {
+//     //   showAlert('error', data.message);
+//     // }
+//   } catch (err) {
+//     alert(err);
+//     console.log(err);
+//   }
+// };

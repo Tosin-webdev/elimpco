@@ -92,7 +92,7 @@
                   <div class="card-body p-4">
                     <div class="tab-content">
                       <div class="tab-pane active" id="personalDetails" role="tabpanel">
-                        <form class="profile-me" >
+                        <form class="profile-update" >
                           <div class="row">
                             <div class="col-lg-6">
                               <div class="mb-3">
@@ -140,12 +140,13 @@
                       </div>
                       <!--end tab-pane-->
                       <div class="tab-pane" id="changePassword" role="tabpanel">
-                        <form >
+                        <form class="change-password">
                           <div class="row g-2">
                             <div class="col-lg-4">
                               <div>
                                 <label for="oldpasswordInput" class="form-label">Old Password*</label>
                                 <input
+                                name="oldpasswordInput"
                                   type="password"
                                   class="form-control"
                                   id="oldpasswordInput"
@@ -209,36 +210,10 @@
       <!-- end main content-->
     </div>
     <!-- END layout-wrapper -->
-    <script>
-      alert('hello')
-      // const form = document.querySelector('.profile-me');
-
-      // form.addEventListener('submit', async (e) =>{
-      //   e.preventDefault()
-
-      //   try {
-      //      const res = await fetch('/api/v1/users/updateMe', {
-      //       method: 'PATCH',
-      //       body: JSON.stringify({ name, email }),
-      //       headers: { 'Content-Type': 'application/json' },
-      //     });
-
-      //      const data = await res.json();
-      //     console.log(data);
-      //     if (data.status == 'success') {
-      //       alert('done');
-      //     }
-      //   } catch (error) {
-      //     alert(error)
-      //   }
-      // })
-
-  
-    </script>
-
-    <!-- <script src="/assets/js/login.js"></script> -->
+     <%- include('./partials/vendor-scripts')%>
+    <script src="/assets/js/login.js"></script>
     <!-- profile-setting init js -->
-    <!-- <script src="assets/js/pages/profile-setting.init.js"></script> -->
+    <script src="assets/js/pages/profile-setting.init.js"></script>
 
     <!-- App js -->
     <!-- <script src="assets/js/app.js"></script> -->
