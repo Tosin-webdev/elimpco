@@ -5,6 +5,7 @@ const AppError = require('../utils/appError');
 const catchAsync = require('../utils/catchAsync');
 const jwt = require('jsonwebtoken');
 const sendEmail = require('../utils/email');
+const Email = require('../utils/email');
 
 // A function to create a JWT token
 const signToken = (id) => {
@@ -44,6 +45,9 @@ exports.signup = catchAsync(async (req, res, next) => {
     email: req.body.email,
     password: req.body.password,
   });
+
+  // const url = `${req.protocol}://${req.get('host')}/me;`;
+  await new Email(newUser).sendWelcome();
 
   createSendToken(newUser, 201, res);
   // create a token
