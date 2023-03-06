@@ -31,21 +31,29 @@ const userDataForm = document.querySelector('.profile-update');
 
 userDataForm.addEventListener('submit', async (e) => {
   e.preventDefault();
-  // alert('loo');
-  const name = userDataForm.name.value;
-  const email = userDataForm.emailInput.value;
-
+  const name = document.getElementById('nameInput').value;
+  const email = document.getElementById('emailInput').value;
+  const image = document.querySelector('.profile-img-file-input').files[0];
+  // console.log(photo);
+  // if (photo) {
+  //   photo = photo.name;
+  // }
+  // console.log(name, email, photo);
+  // console.log(form);
+  //
   try {
     const res = await fetch('/api/v1/users/updateMe', {
       method: 'PATCH',
-      body: JSON.stringify({ name, email }),
+      body: JSON.stringify({ name, email, image }),
       headers: { 'Content-Type': 'application/json' },
     });
+    console.log(res);
 
     const data = await res.json();
     console.log(data);
     if (data.status == 'success') {
-      alert('done');
+      // alert('done');
+      showAlert('success', 'Profile successfully updated');
     }
   } catch (error) {
     alert(error);
