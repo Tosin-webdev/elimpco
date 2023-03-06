@@ -1,6 +1,6 @@
 const nodemailer = require('nodemailer');
 const ejs = require('ejs');
-const catchAsync = require('./catchAsync');
+// const catchAsync = require('./catchAsync');
 const htmlToText = require('html-to-text');
 
 // new Email(user, url).sendWelcome();
@@ -36,6 +36,7 @@ module.exports = class Email {
       url: this.url,
       subject,
     });
+    // console.log(html);
 
     // 2) Define email options
     const mailOptions = {
@@ -43,7 +44,7 @@ module.exports = class Email {
       to: this.to,
       subject,
       html,
-      text: htmlToText.fromString(html),
+      text: html,
     };
 
     //3) Create a transport
@@ -51,6 +52,6 @@ module.exports = class Email {
   }
 
   async sendWelcome() {
-    this.send('Welcome', 'Welcome to elimpco');
+    await this.send('Welcome', 'Welcome to elimpco');
   }
 };
