@@ -1,7 +1,7 @@
 const nodemailer = require('nodemailer');
 const ejs = require('ejs');
 // const catchAsync = require('./catchAsync');
-const htmlToText = require('html-to-text');
+const { convert } = require('html-to-text');
 
 // new Email(user, url).sendWelcome();
 module.exports = class Email {
@@ -9,9 +9,9 @@ module.exports = class Email {
     this.to = user.email;
     this.firstName = user.name.split(' ')[0];
     this.url = url;
-    this.from = `oladeji Tosin <${process.env.EMAIL_FROM}>`;
+    this.from = `Oladeji Tosin <${process.env.EMAIL_FROM}>`;
   }
-  createTransport() {
+  newTransport() {
     if (process.env.NODE_ENV === 'production') {
       // Sendgrid
       return 1;
@@ -44,14 +44,16 @@ module.exports = class Email {
       to: this.to,
       subject,
       html,
-      text: html,
+      text: convert(html),
     };
 
     //3) Create a transport
-    await this.newTransport().sendEmail(mailOptions);
+    await this.newTransport().sendMail(mailOptions);
   }
 
   async sendWelcome() {
-    await this.send('Welcome', 'Welcome to elimpco');
+    // await this.send('welcome', 'Welcome to elimpco');
+    await this.send('welcome', 'Welcome to elimpco');
+    console.log('sent');
   }
 };
