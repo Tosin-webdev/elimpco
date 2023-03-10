@@ -38,13 +38,23 @@ module.exports = class Email {
     });
     // console.log(html);
 
+    // const html = `
+    // <b>Hi ${this.firstName}!</b><br/>
+    // <i>Welcome to elimpco</i>
+    // <button>click</button>
+    // `;
+
+    const options = {
+      wordwrap: 130,
+      // ...
+    };
+
     // 2) Define email options
     const mailOptions = {
       from: this.from,
       to: this.to,
       subject,
-      html,
-      text: convert(html),
+      html: convert(html, options),
     };
 
     //3) Create a transport
@@ -53,7 +63,13 @@ module.exports = class Email {
 
   async sendWelcome() {
     // await this.send('welcome', 'Welcome to elimpco');
-    await this.send('welcome', 'Welcome to elimpco');
+    await this.send('Welcome!');
     console.log('sent');
   }
+
+  // async sendPasswordReset() {
+  //   // await this.send('welcome', 'Welcome to elimpco');
+  //   await this.send('passwordReset', 'Your password reset token valid for only 10 mins');
+  //   // console.log('sent');
+  // }
 };
