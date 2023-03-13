@@ -19,6 +19,8 @@ const bookingRouter = require('./routes/bookingRoutes');
 const helmet = require('helmet');
 
 const app = express();
+
+// load env variables
 require('dotenv').config();
 
 app.set('view engine', 'ejs');
