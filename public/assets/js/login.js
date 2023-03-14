@@ -123,21 +123,29 @@ document.querySelector('.form').addEventListener('submit', (e) => {
 
 const bookTour = async (tourId) => {
   try {
-    const session = await axios(`http://127.0.0.1:3000/api/v1/bookings/checkout-session/${tourId}`);
+    // const session = await axios(`http://127.0.0.1:3000/api/v1/bookings/checkout-session/${tourId}`);
     console.log(session);
+    const res = await fetch(`/api/v1/bookings/checkout-session/${tourId}`, {
+      method: 'GET',
+      headers: { 'Content-Type': 'application/json' },
+    });
+    const data = await res.json();
+    console.log(data);
 
     // create cheout form + change credit card
-    await stripe.redirectToCheckout({
-      sessionId: session.data.session.id,
-    });
+    // await stripe.redirectToCheckout({
+    //   sessionId: session.data.session.id,
+    // });
   } catch (error) {
     console.log(err);
   }
 };
 
-document.getElementById('book-tour').addEventListener('click', (e) => {
-  const { tourId } = e.target.dataset;
-  bookTour(tourId);
+document.querySelector('#book-tour').addEventListener('click', (e) => {
+  e.preventDefault();
+  // const { tourId } = e.target.dataset;
+  // bookTour(tourId);
+  console.log('hiii');
 });
 
 // if (logoutButton) {

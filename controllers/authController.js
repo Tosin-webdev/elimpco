@@ -191,7 +191,6 @@ exports.forgotPassword = catchAsync(async (req, res, next) => {
   // console.log(resetToken);
 
   // 3) send it to the user's email
-
   const resetUrl = `${req.protocol}://${req.get('host')}/resetPassword/${resetToken}`;
   try {
     const message = `Forgot your password? Submit this link: ${resetUrl}.\n If you did not request this, please ignore this email and your password will remain unchanged.`;
