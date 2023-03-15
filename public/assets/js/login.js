@@ -1,6 +1,40 @@
 // const logoutButton = document.querySelector('.btn-logout');
 // const stripe = Stripe('')
 
+const bookTour = async (tourId) => {
+  try {
+    // const session = await axios(`http://127.0.0.1:3000/api/v1/bookings/checkout-session/${tourId}`);
+    // console.log(session);
+    const res = await fetch(`/api/v1/bookings/checkout-session/${tourId}`, {
+      method: 'GET',
+      headers: { 'Content-Type': 'application/json' },
+    });
+
+    const data = await res.json();
+    console.log(data);
+    // return data;
+
+    if (data.status === 'success') {
+      window.location = data.session.url;
+    }
+    // create cheout form + change credit card
+    // await stripe.redirectToCheckout({
+    //   sessionId: session.data.session.id,
+    // });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const bookingTour = document.querySelector('.book-tour');
+bookingTour.addEventListener('click', (e) => {
+  // e.preventDefault();
+  const { tourId } = e.target.dataset;
+  bookTour(tourId);
+  console.log(tourId);
+  console.log('hiii');
+});
+
 const login = async (email, password) => {
   //   alert(email, password);
   console.log(email, password);
@@ -121,32 +155,13 @@ document.querySelector('.form').addEventListener('submit', (e) => {
   login(email, password);
 });
 
-const bookTour = async (tourId) => {
-  try {
-    // const session = await axios(`http://127.0.0.1:3000/api/v1/bookings/checkout-session/${tourId}`);
-    console.log(session);
-    const res = await fetch(`/api/v1/bookings/checkout-session/${tourId}`, {
-      method: 'GET',
-      headers: { 'Content-Type': 'application/json' },
-    });
-    const data = await res.json();
-    console.log(data);
-
-    // create cheout form + change credit card
-    // await stripe.redirectToCheckout({
-    //   sessionId: session.data.session.id,
-    // });
-  } catch (error) {
-    console.log(err);
-  }
-};
-
-document.querySelector('#book-tour').addEventListener('click', (e) => {
-  e.preventDefault();
-  // const { tourId } = e.target.dataset;
-  // bookTour(tourId);
-  console.log('hiii');
-});
+// const bookingTour = document.querySelector('.book-tour');
+// bookingTour.addEventListener('click', (e) => {
+//   // e.preventDefault();
+//   // const { tourId } = e.target.dataset;
+//   // bookTour(tourId);
+//   console.log('hiii');
+// });
 
 // if (logoutButton) {
 document.querySelector('.btn-logout').addEventListener('click', logout);
