@@ -22,9 +22,6 @@ exports.getOverview = async (req, res) => {
 };
 
 exports.signin = (req, res) => {
-  // Get tour data from collection
-  //   Build template
-
   // render the template
   res.status(200).render('signin', {
     title: 'All Tours',
