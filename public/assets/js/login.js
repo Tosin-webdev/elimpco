@@ -148,7 +148,8 @@ const showAlert = (type, msg) => {
   window.setTimeout(hideAlert, 5000);
 };
 
-document.querySelector('.form').addEventListener('submit', (e) => {
+document.querySelector('.form1').addEventListener('submit', (e) => {
+  console.log('123...');
   e.preventDefault();
   const email = document.getElementById('email').value;
   const password = document.getElementById('password-input').value;

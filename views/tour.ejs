@@ -106,8 +106,6 @@
                 
                 <% for(var i=0; i < data.length; i++) { %>
                 <i class="bi bi-star<%= review.rating >= data[i] ? "-fill" : "" %>"></i>
-
-                
                 <% } %>
               </div>
             </div>
@@ -116,11 +114,6 @@
         </div>
         <div class= "col-lg-6 col-xl-6 mt-4" >
           <div class="card card-body">
-              <div class="avatar-sm mb-3">
-                  <div class="avatar-title bg-soft-success text-success fs-17 rounded">
-                      <i class="ri-smartphone-line"></i>
-                  </div>
-              </div>
               <h4 class="card-title">Book Tour</h4>
               <p class="card-text text-muted">Send a link to apply on mobile device. Appropriately communicate one-to-one technology.</p>
               <button  data-tour-id=<%= tour.id %> class="book-tour btn btn-success">Book Now</button>
