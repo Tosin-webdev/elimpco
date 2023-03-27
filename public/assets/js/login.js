@@ -1,5 +1,18 @@
 // const logoutButton = document.querySelector('.btn-logout');
 // const stripe = Stripe('')
+const signInForm = document.querySelector('.form1');
+const bookingTour = document.querySelector('.book-tour');
+
+const showAlert = (type, msg) => {
+  const markup = `<div class="alert alert--${type}">${msg}</div>`;
+  document.querySelector('body').insertAdjacentHTML('afterbegin', markup);
+  window.setTimeout(hideAlert, 5000);
+};
+
+const hideAlert = () => {
+  const el = document.querySelector('.alert');
+  if (el) el.parentElement.removeChild(el);
+};
 
 const bookTour = async (tourId) => {
   try {
@@ -26,14 +39,14 @@ const bookTour = async (tourId) => {
   }
 };
 
-const bookingTour = document.querySelector('.book-tour');
-bookingTour.addEventListener('click', (e) => {
-  // e.preventDefault();
-  const { tourId } = e.target.dataset;
-  bookTour(tourId);
-  console.log(tourId);
-  console.log('hiii');
-});
+if (bookingTour)
+  bookingTour.addEventListener('click', (e) => {
+    // e.preventDefault();
+    const { tourId } = e.target.dataset;
+    bookTour(tourId);
+    console.log(tourId);
+    console.log('hiii');
+  });
 
 const login = async (email, password) => {
   //   alert(email, password);
@@ -63,38 +76,49 @@ const login = async (email, password) => {
   }
 };
 
+if (signInForm) {
+  signInForm.addEventListener('submit', (e) => {
+    console.log('123...');
+    e.preventDefault();
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password-input').value;
+    login(email, password);
+  });
+}
+
 const userDataForm = document.querySelector('.profile-update');
 
-userDataForm.addEventListener('submit', async (e) => {
-  e.preventDefault();
-  const name = document.getElementById('nameInput').value;
-  const email = document.getElementById('emailInput').value;
-  const image = document.querySelector('.profile-img-file-input').files[0];
-  // console.log(photo);
-  // if (photo) {
-  //   photo = photo.name;
-  // }
-  // console.log(name, email, photo);
-  // console.log(form);
-  //
-  try {
-    const res = await fetch('/api/v1/users/updateMe', {
-      method: 'PATCH',
-      body: JSON.stringify({ name, email, image }),
-      headers: { 'Content-Type': 'application/json' },
-    });
-    console.log(res);
+if (userDataForm)
+  userDataForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const name = document.getElementById('nameInput').value;
+    const email = document.getElementById('emailInput').value;
+    const image = document.querySelector('.profile-img-file-input').files[0];
+    // console.log(photo);
+    // if (photo) {
+    //   photo = photo.name;
+    // }
+    // console.log(name, email, photo);
+    // console.log(form);
+    //
+    try {
+      const res = await fetch('/api/v1/users/updateMe', {
+        method: 'PATCH',
+        body: JSON.stringify({ name, email, image }),
+        headers: { 'Content-Type': 'application/json' },
+      });
+      console.log(res);
 
-    const data = await res.json();
-    console.log(data);
-    if (data.status == 'success') {
-      // alert('done');
-      showAlert('success', 'Profile successfully updated');
+      const data = await res.json();
+      console.log(data);
+      if (data.status == 'success') {
+        // alert('done');
+        showAlert('success', 'Profile successfully updated');
+      }
+    } catch (error) {
+      alert(error);
     }
-  } catch (error) {
-    alert(error);
-  }
-});
+  });
 
 const userPasswordForm = document.querySelector('.change-password');
 
@@ -136,25 +160,6 @@ const logout = async () => {
     showAlert('error', 'Error logging out! pls Try again');
   }
 };
-
-const hideAlert = () => {
-  const el = document.querySelector('.alert');
-  if (el) el.parentElement.removeChild(el);
-};
-
-const showAlert = (type, msg) => {
-  const markup = `<div class="alert alert--${type}">${msg}</div>`;
-  document.querySelector('body').insertAdjacentHTML('afterbegin', markup);
-  window.setTimeout(hideAlert, 5000);
-};
-
-document.querySelector('.form1').addEventListener('submit', (e) => {
-  console.log('123...');
-  e.preventDefault();
-  const email = document.getElementById('email').value;
-  const password = document.getElementById('password-input').value;
-  login(email, password);
-});
 
 // const bookingTour = document.querySelector('.book-tour');
 // bookingTour.addEventListener('click', (e) => {

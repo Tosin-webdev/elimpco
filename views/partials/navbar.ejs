@@ -39,9 +39,27 @@
       </ul>
 
       <% if (user) { %>
-      <div>
-        <a href=""> Welcome, <%= user.name %></a>
+      <div class="d-flex justify-content-between">
+        <a href="/me">
+          <span class="d-flex align-items-center">
+            <img
+              class="rounded-circle header-profile-user"
+              src="assets/images/users/avatar-1.jpg"
+              alt="Header Avatar"
+            />
+            <span class="text-start ms-xl-2">
+              <span class="d-none d-xl-inline-block ms-1 fw-medium user-name-text">Welcome, <%= user.name %></span>
+            </span>
+          </span>
+        </a>
         <a href="/api/v1/users/logout" class="btn btn-soft-primary btn-logout"> Logout</a>
+        <!-- <span class="d-flex align-items-center">
+          <img class="rounded-circle header-profile-user" src="assets/images/users/avatar-1.jpg" alt="Header Avatar" />
+          <span class="text-start ms-xl-2">
+            <span class="d-none d-xl-inline-block ms-1 fw-medium user-name-text">Anna Adame</span>
+            <span class="d-none d-xl-block ms-1 fs-12 text-muted user-name-sub-text">Founder</span>
+          </span>
+        </span> -->
       </div>
       <% } else { %>
       <!-- <div class=""> -->
