@@ -82,19 +82,20 @@ exports.login = catchAsync(async (req, res, next) => {
   createSendToken(user, 200, res);
 });
 
-// exports.logout = (req, res) => {
-//   res.cookie('jwt', 'loggedOut', {
-//     expires: new Date(Date.now() * 10 * 1000),
-//     httpOnly: true,
-//   });
-//   res.status(200).json({ status: 'success' });
-// };
-
-module.exports.logout = (req, res) => {
-  res.cookie('jwt', '', { maxAge: 1 });
-  // res.status(200).json({ status: 'success' });
-  res.redirect('/');
+exports.logout = (req, res) => {
+  // res.cookie('jwt', 'loggedOut', {
+  //   expires: new Date(Date.now() * 10 * 1000),
+  //   httpOnly: true,
+  // });
+  res.cookie('jwt', '', { maxAge: 1, httpOnly: true });
+  res.status(200).json({ status: 'success' });
 };
+
+// exports.logout = (req, res) => {
+//   res.cookie('jwt', '', { maxAge: 1 });
+//   // res.status(200).json({ status: 'success' });
+//   res.redirect('/signin');
+// };
 
 exports.protect = catchAsync(async (req, res, next) => {
   // console.log('a');
@@ -134,32 +135,54 @@ exports.protect = catchAsync(async (req, res, next) => {
   next();
 });
 
-exports.isLoggedIn = async (req, res, next) => {
-  if (req.cookies.jwt) {
-    try {
-      // 1) verify token
-      const decoded = await promisify(jwt.verify)(req.cookies.jwt, process.env.JWT_SECRET);
+// exports.isLoggedIn = async (req, res, next) => {
+//   if (req.cookies.jwt) {
+//     try {
+//       // 1) verify token
+//       const decoded = await promisify(jwt.verify)(req.cookies.jwt, process.env.JWT_SECRET);
 
-      // 2) Check if user still exists
-      const currentUser = await User.findById(decoded.id);
-      if (!currentUser) {
-        return next();
+//       // 2) Check if user still exists
+//       const currentUser = await User.findById(decoded.id);
+//       if (!currentUser) {
+//         return next();
+//       }
+
+//       // 3) Check if user changed password after the token was issued
+//       if (currentUser.changedPasswordAfter(decoded.iat)) {
+//         return next();
+//       }
+
+//       // THERE IS A LOGGED IN USER
+//       res.locals.user = currentUser;
+//       return next();
+//     } catch (err) {
+//       res.locals.user = null;
+//       return next();
+//     }
+//   }
+//   next();
+// };
+
+exports.isLoggedIn = (req, res, next) => {
+  const token = req.cookies.jwt;
+  if (token) {
+    jwt.verify(token, process.env.JWT_SECRET, async (err, decodedToken) => {
+      if (err) {
+        console.log(err.message);
+        // res.redirect("/login");
+        res.locals.user = null;
+        next();
+      } else {
+        console.log(decodedToken);
+        let user = await User.findById(decodedToken.id);
+        res.locals.user = user;
+        next();
       }
-
-      // 3) Check if user changed password after the token was issued
-      if (currentUser.changedPasswordAfter(decoded.iat)) {
-        return next();
-      }
-
-      // THERE IS A LOGGED IN USER
-      res.locals.user = currentUser;
-      return next();
-    } catch (err) {
-      res.locals.user = null;
-      return next();
-    }
+    });
+  } else {
+    res.locals.user = null;
+    next();
   }
-  next();
 };
 
 // Perfoming authorization

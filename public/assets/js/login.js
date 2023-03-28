@@ -3,6 +3,7 @@
 const signInForm = document.querySelector('.form1');
 const bookingTour = document.querySelector('.book-tour');
 const signUpForm = document.querySelector('.needs-validation');
+const logoutButton = document.querySelector('.btn-logout');
 
 const showAlert = (type, msg) => {
   const markup = `<div class="alert alert--${type}">${msg}</div>`;
@@ -14,6 +15,26 @@ const hideAlert = () => {
   const el = document.querySelector('.alert');
   if (el) el.parentElement.removeChild(el);
 };
+
+const logout = async () => {
+  try {
+    const res = await fetch('/api/v1/users/logout', {
+      method: 'GET',
+      headers: { 'Content-Type': 'application/json' },
+    });
+    const data = await res.json();
+    console.log(data);
+    alert('jii');
+    if (data.status == 'success') location.reload(true);
+    if (data.status == 'fail') showAlert('error', 'Error logging out! Try again');
+  } catch (err) {
+    showAlert('error', 'Error logging out! pls Try again');
+  }
+};
+
+if (logoutButton) {
+  logoutButton.addEventListener('click', logout);
+}
 
 const bookTour = async (tourId) => {
   try {
@@ -120,7 +141,8 @@ if (signUpForm) {
     const name = document.getElementById('name').value;
     const email = document.getElementById('useremail').value;
     const password = document.getElementById('password-input').value;
-    const passwordCOnfirm = document.getElementById('password-confirm-input').value;
+    const passwordConfirm = document.getElementById('password-confirm-input').value;
+    signup(name, email, password, passwordConfirm);
   });
 }
 
@@ -185,20 +207,6 @@ userPasswordForm.addEventListener('submit', async (e) => {
   }
 });
 
-const logout = async () => {
-  try {
-    const res = await fetch('/api/v1/users/logout', {
-      method: 'GET',
-      headers: { 'Content-Type': 'application/json' },
-    });
-    const data = await res.json();
-    if (data.status == 'success') location.reload(true);
-    if (data.status == 'fail') showAlert('error', 'Error logging out! Try again');
-  } catch (err) {
-    showAlert('error', 'Error logging out! pls Try again');
-  }
-};
-
 // const bookingTour = document.querySelector('.book-tour');
 // bookingTour.addEventListener('click', (e) => {
 //   // e.preventDefault();
@@ -208,7 +216,6 @@ const logout = async () => {
 // });
 
 // if (logoutButton) {
-document.querySelector('.btn-logout').addEventListener('click', logout);
 // }
 // document.querySelector('.profile-me').addEventListener('submit', (e) => {
 //   e.preventDefault();

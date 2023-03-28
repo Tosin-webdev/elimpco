@@ -83,9 +83,9 @@ app.use((req, res, next) => {
   next();
 });
 
-// 3) ROUTES
+app.get('*', authController.isLoggedIn);
 
-// app.get('*', authController.isLoggedIn);
+// 3) ROUTES
 
 app.use('/', viewRouter);
 app.use('/api/v1/tours', tourRouter);
