@@ -2,6 +2,7 @@
 // const stripe = Stripe('')
 const signInForm = document.querySelector('.form1');
 const bookingTour = document.querySelector('.book-tour');
+const signUpForm = document.querySelector('.needs-validation');
 
 const showAlert = (type, msg) => {
   const markup = `<div class="alert alert--${type}">${msg}</div>`;
@@ -75,6 +76,33 @@ const login = async (email, password) => {
     console.log(err);
   }
 };
+const signup = async (name, email, password, passwordConfirm) => {
+  //   alert(email, password);
+  console.log(email, password);
+  try {
+    const res = await fetch('/api/v1/users/signup', {
+      method: 'POST',
+      body: JSON.stringify({ name, email, password, passwordConfirm }),
+      headers: { 'Content-Type': 'application/json' },
+    });
+    const data = await res.json();
+
+    console.log(data);
+    if (data.status == 'success') {
+      showAlert('success', 'signed up successfully');
+      window.setTimeout(() => {
+        location.assign('/');
+      }, 1500);
+    }
+
+    if (data.status === 'fail') {
+      showAlert('error', data.message);
+    }
+  } catch (err) {
+    alert(err);
+    console.log(err);
+  }
+};
 
 if (signInForm) {
   signInForm.addEventListener('submit', (e) => {
@@ -83,6 +111,16 @@ if (signInForm) {
     const email = document.getElementById('email').value;
     const password = document.getElementById('password-input').value;
     login(email, password);
+  });
+}
+
+if (signUpForm) {
+  signUpForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('useremail').value;
+    const password = document.getElementById('password-input').value;
+    const passwordCOnfirm = document.getElementById('password-confirm-input').value;
   });
 }
 
