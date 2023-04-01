@@ -153,8 +153,8 @@ if (userDataForm)
     e.preventDefault();
     const name = document.getElementById('nameInput').value;
     const email = document.getElementById('emailInput').value;
-    const image = document.querySelector('.profile-img-file-input').files[0];
-    // console.log(photo);
+    const photo = document.getElementById('profile-img-file-input').files[0];
+    console.log(photo);
     // if (photo) {
     //   photo = photo.name;
     // }
@@ -164,7 +164,7 @@ if (userDataForm)
     try {
       const res = await fetch('/api/v1/users/updateMe', {
         method: 'PATCH',
-        body: JSON.stringify({ name, email, image }),
+        body: JSON.stringify({ name, email, photo }),
         headers: { 'Content-Type': 'application/json' },
       });
       console.log(res);
