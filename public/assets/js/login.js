@@ -151,28 +151,25 @@ const userDataForm = document.querySelector('.profile-update');
 if (userDataForm)
   userDataForm.addEventListener('submit', async (e) => {
     e.preventDefault();
-    const name = document.getElementById('nameInput').value;
-    const email = document.getElementById('emailInput').value;
-    const photo = document.getElementById('profile-img-file-input').files[0];
-    console.log(photo);
-    // if (photo) {
-    //   photo = photo.name;
-    // }
-    // console.log(name, email, photo);
-    // console.log(form);
-    //
+
+    const form = new FormData();
+    console.log(form);
+    form.append('name', document.getElementById('nameInput').value);
+    form.append('email', document.getElementById('emailInput').value);
+    form.append('photo', document.getElementById('profile-img-file-input').files[0]);
+
+    console.log(form);
     try {
       const res = await fetch('/api/v1/users/updateMe', {
         method: 'PATCH',
-        body: JSON.stringify({ name, email, photo }),
-        headers: { 'Content-Type': 'application/json' },
+        body: form,
       });
       console.log(res);
 
       const data = await res.json();
       console.log(data);
+      console.log(form);
       if (data.status == 'success') {
-        // alert('done');
         showAlert('success', 'Profile successfully updated');
       }
     } catch (error) {
