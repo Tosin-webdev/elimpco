@@ -171,6 +171,7 @@ if (userDataForm)
       console.log(form);
       if (data.status == 'success') {
         showAlert('success', 'Profile successfully updated');
+        window.location.reload();
       }
     } catch (error) {
       alert(error);
