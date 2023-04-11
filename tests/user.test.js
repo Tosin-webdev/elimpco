@@ -5,9 +5,9 @@ const User = require('../models/userModel');
 
 const sum = require('./sum');
 
-test('adds 1 + 2 to equal 3', () => {
-  expect(sum(1, 2)).toBe(3);
-});
+// test('adds 1 + 2 to equal 3', () => {
+//   expect(sum(1, 2)).toBe(3);
+// });
 // beforeEach(async () => {
 //   // await mongoose.connect('mongodb://localhost:27017/tour');
 //   // await new User(userOne).save();
@@ -17,7 +17,7 @@ test('adds 1 + 2 to equal 3', () => {
 // afterEach(async () => {
 //   await mongoose.connection.close();
 // });
-/*
+
 test('should signup a new user', async () => {
   const response = await request(app)
     .post('/api/v1/users/signup')
@@ -39,4 +39,3 @@ test('should signup a new user', async () => {
     },
   });
 });
-*/
