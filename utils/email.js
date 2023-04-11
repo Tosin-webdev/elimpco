@@ -31,11 +31,11 @@ module.exports = class Email {
   async send(template, subject) {
     // send the actual email
     //1) Render HTML based on ejs template
-    const html = ejs.renderFile(`${__dirname}/../views/email/${template}.ejs`, {
-      firstName: this.firstName,
-      url: this.url,
-      subject,
-    });
+    // const html = ejs.renderFile(`${__dirname}/../views/email/${template}.ejs`, {
+    //   firstName: this.firstName,
+    //   url: this.url,
+    //   subject,
+    // });
     // console.log(html);
 
     // const html = `
@@ -44,17 +44,15 @@ module.exports = class Email {
     // <button>click</button>
     // `;
 
-    const options = {
-      wordwrap: 130,
-      // ...
-    };
-
     // 2) Define email options
     const mailOptions = {
       from: this.from,
       to: this.to,
       subject,
-      html: convert(html, options),
+      html: `
+      welcome to Elimpco!!!
+      We are so glad to have you with us.
+      `,
     };
 
     //3) Create a transport
