@@ -7,7 +7,7 @@ const stripe = require('stripe')(
 );
 // const User = require('../models/');
 
-console.log(process.env.STRIPE_SECRET_KEY);
+// console.log(process.env.STRIPE_SECRET_KEY);
 exports.getCheckoutSession = catchAsync(async (req, res, next) => {
   // 1) Get the currently book tour
   const tour = await Tour.findById(req.params.tourId);

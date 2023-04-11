@@ -71,7 +71,7 @@ app.use(
   })
 );
 
-console.log(process.env.NODE_ENV);
+// console.log(process.env.NODE_ENV);
 
 // Serving static files
 app.use(express.static(`${__dirname}/public`));
