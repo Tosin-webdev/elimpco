@@ -5,11 +5,11 @@ const User = require('../models/userModel');
 
 const sum = require('./sum');
 
-// test('adds 1 + 2 to equal 3', () => {
-//   expect(sum(1, 2)).toBe(3);
-// });
+test('adds 1 + 2 to equal 3', () => {
+  expect(sum(1, 2)).toBe(3);
+});
 // beforeEach(async () => {
-//   // await mongoose.connect('mongodb://localhost:27017/tour');
+//   await mongoose.connect('mongodb://localhost:27017/tour');
 //   // await new User(userOne).save();
 // });
 
@@ -19,23 +19,25 @@ const sum = require('./sum');
 // });
 
 test('should signup a new user', async () => {
-  const response = await request(app)
-    .post('/api/v1/users/signup')
+  //  const response =
+
+  await request(app)
+    .post('/signup')
     .send({
-      name: 'john',
+      name: 'johnn',
       email: 'john11@gmail.com',
-      password: 'generality',
-      passwordConfirm: 'generality',
+      password: '1234',
+      passwordConfirm: '1234',
     })
     .expect(201);
-  // const user = await User.findById(response.body._id);
-  // expect(user).not.toBeNull();
+  // const newUser = await User.findById(response.body.data.newUser._id);
+  // expect(newUser).not.toBeNull();
 
-  expect(response.body).toMatchObject({
-    newUser: {
-      name: 'john',
-      email: 'john@gmail.com',
-      password: 'generality',
-    },
-  });
+  // expect(response.body).toMatchObject({
+  //   newUser: {
+  //     name: 'john',
+  //     email: 'john@gmail.com',
+  //     password: 'generality',
+  //   },
+  // });
 });

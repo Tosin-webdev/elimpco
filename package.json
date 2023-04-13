@@ -9,6 +9,9 @@
     "debug": "ndb server.js",
     "test": "jest --watch "
   },
+  "jest": {
+    "testEnvironment": "node"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
