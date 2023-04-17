@@ -2,9 +2,7 @@ const Booking = require('../models/bookingmodel');
 const Tour = require('../models/tourModel');
 const catchAsync = require('../utils/catchAsync');
 const factory = require('./handleFactory');
-const stripe = require('stripe')(
-  'sk_test_51MkdXRDB6CPI8beonrCfwXgN5Co45YClI3DbUuwwGKMQYRH0UP5OxJAA6pSYCK3o0OJRd16c3FiAloatQUBwzqS6002m93wq9z'
-);
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 // const User = require('../models/');
 
 // console.log(process.env.STRIPE_SECRET_KEY);
