@@ -1,4 +1,4 @@
-const dotenv = require('dotenv');
+// const dotenv = require('dotenv');
 
 process.on('uncaughtException', (err) => {
   console.log('UNCAUGHT EXCEPTION! 💥 Shutting down...');
@@ -6,7 +6,7 @@ process.on('uncaughtException', (err) => {
   process.exit(1);
 });
 
-dotenv.config({ path: './config.env' });
+// dotenv.config({ path: './config.env' });
 const app = require('./app');
 
 // mongoose.connect('mongodb://localhost:27017/tour').then(() => console.log('DB connection successfull'));
