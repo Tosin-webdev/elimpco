@@ -10,8 +10,6 @@ const compression = require('compression');
 const cors = require('cors');
 const mongoose = require('mongoose');
 
-require('./db/mongoose');
-
 const authController = require('./controllers/authController');
 const globalErrorHandler = require('./controllers/errorController');
 const tourRouter = require('./routes/tourRoutes');
@@ -27,6 +25,8 @@ const app = express();
 
 // load env variables
 require('dotenv').config();
+
+require('./db/mongoose');
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
