@@ -8,7 +8,6 @@ const hpp = require('hpp');
 const cookieParser = require('cookie-parser');
 const compression = require('compression');
 const cors = require('cors');
-const mongoose = require('mongoose');
 
 const authController = require('./controllers/authController');
 const globalErrorHandler = require('./controllers/errorController');
