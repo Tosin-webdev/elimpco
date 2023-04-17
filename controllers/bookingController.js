@@ -50,6 +50,7 @@ const createBookingCheckout = async (session) => {
   await Booking.create({ tour, user, price });
 };
 
+/*
 exports.webhookCheckout = (req, res, next) => {
   const signature = req.headers['stripe-signature'];
 
@@ -65,6 +66,7 @@ exports.webhookCheckout = (req, res, next) => {
   res.status(200).json({ received: true });
 };
 
+*/
 exports.createBooking = factory.createOne(Booking);
 exports.getBooking = factory.getOne(Booking);
 exports.getAllBookings = factory.getAll(Booking);
