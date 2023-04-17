@@ -10,6 +10,8 @@ const compression = require('compression');
 const cors = require('cors');
 const mongoose = require('mongoose');
 
+require('./db/mongoose');
+
 const authController = require('./controllers/authController');
 const globalErrorHandler = require('./controllers/errorController');
 const tourRouter = require('./routes/tourRoutes');
@@ -18,7 +20,6 @@ const userRouter = require('./routes/userRoutes');
 const reviewRouter = require('./routes/reviewRoutes');
 const viewRouter = require('./routes/viewRoutes');
 const bookingRouter = require('./routes/bookingRoutes');
-mongoose.connect('mongodb://localhost:27017/tour').then(() => console.log('DB connection successfull'));
 
 const helmet = require('helmet');
 
@@ -91,7 +92,7 @@ app.get('*', authController.isLoggedIn);
 
 app.use('/', viewRouter);
 app.use('/api/v1/tours', tourRouter);
-app.use(userRouter);
+app.use('/api/v1/users', userRouter);
 app.use('/api/v1/reviews', reviewRouter);
 app.use('/api/v1/bookings', bookingRouter);
 
