@@ -11,7 +11,9 @@ router.get('/signup', viewsController.signup);
 router.get('/signin', viewsController.signin);
 router.get('/tour/:slug', authController.isLoggedIn, viewsController.getTour);
 router.get('/me', authController.protect, viewsController.getMe);
+router.get('/my-tours', authController.protect, viewsController.getMyTours);
 router.get('/404', viewsController.errorPage);
+
 // router.post('/submit-user-data', viewsController.updateUserData);
 
 module.exports = router;

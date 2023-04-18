@@ -98,12 +98,10 @@ exports.logout = (req, res) => {
 // };
 
 exports.protect = catchAsync(async (req, res, next) => {
-  // console.log('a');
   // 1) Getting token and check if its there
   let token;
   if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
     token = req.headers.authorization.split(' ')[1];
-    console.log(token);
   } else if (req.cookies.jwt) {
     token = req.cookies.jwt;
   }
@@ -111,15 +109,12 @@ exports.protect = catchAsync(async (req, res, next) => {
   if (!token) {
     return next(new AppError('You are not logged in! Please log in to get access', 401));
   }
-  // console.log('b');
   // 2) Verification token
   const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
-  console.log(decoded);
 
   // res.send(decoded);
   // 3) Check if user still exists
   const currentUser = await User.findById(decoded.id);
-  // console.log(currentUser);
   if (!currentUser) {
     return next(new AppError('The user belonging to this email does not exist', 401));
   }
@@ -168,12 +163,9 @@ exports.isLoggedIn = (req, res, next) => {
   if (token) {
     jwt.verify(token, process.env.JWT_SECRET, async (err, decodedToken) => {
       if (err) {
-        console.log(err.message);
-        // res.redirect("/login");
         res.locals.user = null;
         next();
       } else {
-        console.log(decodedToken);
         let user = await User.findById(decodedToken.id);
         res.locals.user = user;
         next();

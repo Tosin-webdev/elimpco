@@ -9,6 +9,8 @@ const cookieParser = require('cookie-parser');
 const compression = require('compression');
 const cors = require('cors');
 
+require('dotenv').config();
+
 const authController = require('./controllers/authController');
 const globalErrorHandler = require('./controllers/errorController');
 const tourRouter = require('./routes/tourRoutes');
@@ -16,14 +18,13 @@ const AppError = require('./utils/appError');
 const userRouter = require('./routes/userRoutes');
 const reviewRouter = require('./routes/reviewRoutes');
 const viewRouter = require('./routes/viewRoutes');
-// const bookingRouter = require('./routes/bookingRoutes');
+const bookingRouter = require('./routes/bookingRoutes');
 
 const helmet = require('helmet');
 
 const app = express();
 
 // load env variables
-require('dotenv').config();
 
 require('./db/mongoose');
 
@@ -95,7 +96,7 @@ app.use('/', viewRouter);
 app.use('/api/v1/tours', tourRouter);
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/reviews', reviewRouter);
-// app.use('/api/v1/bookings', bookingRouter);
+app.use('/api/v1/bookings', bookingRouter);
 
 // app.all('*', (req, res, next) => {
 //   // const err = new Error(`Can't find ${req.originalUrl} on this server!`);
