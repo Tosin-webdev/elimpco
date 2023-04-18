@@ -180,6 +180,7 @@ exports.isLoggedIn = (req, res, next) => {
 // Perfoming authorization
 exports.restrictTo = (...roles) => {
   return (req, res, next) => {
+    console.log(req.user.role);
     // roles ['admin', 'lead-guide']
     // checks if the user role is not an 'admin' or 'lead-guide'
     // if its not then send the error
