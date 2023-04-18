@@ -24,7 +24,14 @@ const logout = async () => {
     });
     const data = await res.json();
     console.log(data);
-    alert('jii');
+
+    if (data.status === 'success') {
+      showAlert('success', 'logged out successfully');
+      window.setTimeout(() => {
+        location.assign('/');
+      }, 1500);
+    }
+
     if (data.status == 'success') location.reload(true);
     if (data.status == 'fail') showAlert('error', 'Error logging out! Try again');
   } catch (err) {
@@ -66,8 +73,6 @@ if (bookingTour)
     // e.preventDefault();
     const { tourId } = e.target.dataset;
     bookTour(tourId);
-    console.log(tourId);
-    console.log('hiii');
   });
 
 const login = async (email, password) => {
