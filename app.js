@@ -19,6 +19,7 @@ const userRouter = require('./routes/userRoutes');
 const reviewRouter = require('./routes/reviewRoutes');
 const viewRouter = require('./routes/viewRoutes');
 const bookingRouter = require('./routes/bookingRoutes');
+const bookingController = require('./controllers/bookingController');
 
 const helmet = require('helmet');
 
@@ -56,7 +57,7 @@ const limiter = rateLimit({
 // apply the limiter to all the routes that starts with api
 app.use('/api', limiter);
 
-// app.post('/webhook-checkout', bodyParser.raw({ type: 'application/json' }), bookingController.webhookCheckout);
+app.post('/webhook-checkout', express.raw({ type: 'application/json' }), bookingController.webhookCheckout);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true, limit: '10kb' }));
