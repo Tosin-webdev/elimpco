@@ -32,10 +32,15 @@ exports.signin = (req, res) => {
 
 exports.getTour = catchAsync(async (req, res, next) => {
   // // Get the data, for the requested tour including reviews and guides
+
+  if (!req.user) {
+    res.status(400).render('signin');
+  }
   const tour = await Tour.findOne({ slug: req.params.slug }).populate({
     path: 'reviews',
     fields: 'review rating user',
   });
+  // alert("hello")
 
   if (!tour) {
     return next(new AppError('There is no tour with that name', 404));
