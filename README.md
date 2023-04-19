@@ -3,6 +3,10 @@
 ### Description
 This is a booking application where you can book a tour
 
+### Postman Documentation [here](https://documenter.getpostman.com/view/16204872/2s8ZDU6jX8)
+
+
+
 * features:
 
    * Nodejs: which runs the entire backend of this application
