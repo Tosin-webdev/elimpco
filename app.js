@@ -27,8 +27,6 @@ const app = express();
 
 // load env variables
 
-require('./db/mongoose');
-
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 

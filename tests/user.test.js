@@ -28,9 +28,9 @@ beforeEach(async () => {
 });
 
 /* Closing database connection after each test. */
-// afterEach(async () => {
-//   await mongoose.connection.close();
-// });
+afterEach(async () => {
+  await mongoose.connection.close();
+});
 
 test('should signup a new user', async () => {
   const response = await request(app)

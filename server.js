@@ -9,6 +9,8 @@ process.on('uncaughtException', (err) => {
 // dotenv.config({ path: './config.env' });
 const app = require('./app');
 
+require('./db/mongoose');
+
 // mongoose.connect('mongodb://localhost:27017/tour').then(() => console.log('DB connection successfull'));
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
