@@ -42,7 +42,7 @@ test('should signup a new user', async () => {
       passwordConfirm: '1234',
     })
     .expect(201);
-  // console.log(response.body);
+  console.log(response.body);
   const newUser = await User.findById(response.body.data.user._id);
   expect(newUser).not.toBeNull();
 
@@ -61,6 +61,15 @@ test('should signup a new user', async () => {
 test('Should login existing user', async () => {
   // const response =
   await request(app).post('/api/v1/users/login').send({ email: userOne.email, password: userOne.password }).expect(200);
+  console.log(userOne);
+
+  // expect(response.body.token).toBe(user.token[1].token);
+});
+
+test('Should login existing user', async () => {
+  // const response =
+  await request(app).post('/api/v1/users/login').send({ email: userOne.email, password: userOne.password }).expect(200);
+  console.log(userOne);
 
   // expect(response.body.token).toBe(user.token[1].token);
 });
