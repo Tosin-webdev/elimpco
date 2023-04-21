@@ -1,5 +1,7 @@
 # elimpco
 
+![elimpco](https://user-images.githubusercontent.com/64624808/233012366-139f61d9-576e-4322-ac0a-3d0840329847.png)
+
 ### Description
 This is a booking application where you can book a tour
 
