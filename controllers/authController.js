@@ -70,8 +70,6 @@ exports.login = catchAsync(async (req, res, next) => {
     return next(new AppError('Incorrect email or password', 401));
   }
 
-  // console.log(user.password);
-
   // checks if user password is correc                                                                                            t
   const correct = await user.correctPassword(password, user.password);
   if (!correct) {
@@ -237,7 +235,6 @@ exports.resetPassword = catchAsync(async (req, res, next) => {
   // find the user by its hashed token
   const user = await User.findOne({ passwordResetToken: hashedToken, passwordResetExpires: { $gt: Date.now() } });
 
-  console.log(user);
   // if token has expired or invalid token
   if (!user) {
     return next(new AppError('Token is invalid or has expired', 404));
