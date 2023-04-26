@@ -179,7 +179,6 @@ exports.isLoggedIn = (req, res, next) => {
 // Perfoming authorization
 exports.restrictTo = (...roles) => {
   return (req, res, next) => {
-    console.log(req.user.role);
     // roles ['admin', 'lead-guide']
     // checks if the user role is not an 'admin' or 'lead-guide'
     // if its not then send the error
@@ -193,7 +192,6 @@ exports.restrictTo = (...roles) => {
 exports.forgotPassword = catchAsync(async (req, res, next) => {
   // 1) Get user based on POSTed email
   const user = await User.findOne({ email: req.body.email });
-  // console.log(user);
   if (!user) {
     return next(new AppError('There is no user with that email', 404));
   }
@@ -203,13 +201,11 @@ exports.forgotPassword = catchAsync(async (req, res, next) => {
   // save to the database and deactivate the values set to
   // our schema
   await user.save({ validateBeforeSave: false });
-  // console.log(resetToken);
 
   // 3) send it to the user's email
   const resetUrl = `${req.protocol}://${req.get('host')}/resetPassword/${resetToken}`;
   try {
     const message = `Forgot your password? Submit this link: ${resetUrl}.\n If you did not request this, please ignore this email and your password will remain unchanged.`;
-    // console.log(message);
     await sendEmail({
       email: user.email,
       subject: 'Your password reset token (valid for 10 minutes)',
@@ -255,7 +251,6 @@ exports.resetPassword = catchAsync(async (req, res, next) => {
 exports.updatePassword = catchAsync(async (req, res, next) => {
   // Get user from collection
   const user = await User.findById(req.user.id).select('+password');
-  console.log(user);
   // Check if POSTed current password is correct
   if (!(await user.correctPassword(req.body.passwordCurrent, user.password))) {
     return next(new AppError('Your current password is wrong', 401));
