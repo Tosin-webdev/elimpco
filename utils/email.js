@@ -65,9 +65,9 @@ module.exports = class Email {
     console.log('sent');
   }
 
-  // async sendPasswordReset() {
-  //   // await this.send('welcome', 'Welcome to elimpco');
-  //   await this.send('passwordReset', 'Your password reset token valid for only 10 mins');
-  //   // console.log('sent');
-  // }
+  async sendPasswordReset() {
+    // await this.send('welcome', 'Welcome to elimpco');
+    await this.send('passwordReset', 'Your password reset token valid for only 10 mins');
+    // console.log('sent');
+  }
 };
