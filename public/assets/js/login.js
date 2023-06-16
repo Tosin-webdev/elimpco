@@ -121,8 +121,9 @@ const signup = async (name, email, password, passwordConfirm) => {
       }, 1500);
     }
 
-    if (data.status === 'fail') {
+    if (data.status !== 'success') {
       showAlert('error', data.message);
+      // alert('error');
     }
   } catch (err) {
     alert(err);
