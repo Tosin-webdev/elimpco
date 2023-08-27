@@ -13,7 +13,7 @@ exports.aliasTopTours = (req, res, next) => {
   next();
 };
 
-exports.getAllTours = factory.getAll(Tour);
+// exports.getAllTours = factory.getAll(Tour);
 exports.getTour = factory.getOne(Tour, { path: 'reviews' });
 exports.createTour = factory.createOne(Tour);
 exports.updateTour = factory.updateOne(Tour);
@@ -160,69 +160,70 @@ exports.getDistances = catchAsync(async (req, res, next) => {
   });
 });
 
-// exports.getAllTours = async (req, res) => {
-//   try {
-//     console.log('a');
-//     // 1 Filtering
-//     const queryObj = { ...req.query };
-//     const excludedFields = ['page', 'sort', 'limit', 'fields'];
-//     excludedFields.forEach((el) => delete queryObj[el]);
-//     // console.log(req.query);
+exports.getAllTours = async (req, res) => {
 
-//     // 1B) advanced filtering
-//     let queryStr = JSON.stringify(queryObj);
-//     queryStr = queryStr.replace(/\b(gte|gt|lte|lt)\b/g, (match) => `$${match}`);
-//     // console.log(JSON.parse(queryStr));
-//     let query = Tour.find(JSON.parse(queryStr));
+  try {
+    console.log('a');
+    // 1 Filtering
+    const queryObj = { ...req.query };
+    const excludedFields = ['page', 'sort', 'limit', 'fields'];
+    excludedFields.forEach((el) => delete queryObj[el]);
+    // console.log(req.query);
 
-//     // const tours = await Tour.find();
+    // 1B) advanced filtering
+    let queryStr = JSON.stringify(queryObj);
+    queryStr = queryStr.replace(/\b(gte|gt|lte|lt)\b/g, (match) => `$${match}`);
+    // console.log(JSON.parse(queryStr));
+    let query = Tour.find(JSON.parse(queryStr));
 
-//     // 2) Sorting
-//     if (req.query.sort) {
-//       const sortBy = req.query.sort.split(',').join(' ');
-//       // console.log(sortBy);
-//       query = query.sort(sortBy);
-//     } else {
-//       query = query.sort('-createdAt');
-//     }
+    // const tours = await Tour.find();
 
-//     // 3) Field limiting
-//     if (req.query.fields) {
-//       const fields = req.query.fields.split(',').join(' ');
-//       query = query.select(fields);
-//     } else {
-//       query = query.select('-__v');
-//     }
-//     // 4) Pagination
-//     const page = req.query.page * 1 || 1;
-//     const limit = req.query.limit * 1 || 100;
-//     const skip = (page - 1) * limit;
+    // 2) Sorting
+    if (req.query.sort) {
+      const sortBy = req.query.sort.split(',').join(' ');
+      console.log(sortBy);
+      query = query.sort(sortBy);
+    } else {
+      query = query.sort('-createdAt');
+    }
 
-//     query = query.skip(skip).limit(limit);
+    // 3) Field limiting
+    if (req.query.fields) {
+      const fields = req.query.fields.split(',').join(' ');
+      query = query.select(fields);
+    } else {
+      query = query.select('-__v');
+    }
+    // 4) Pagination
+    const page = req.query.page * 1 || 1;
+    const limit = req.query.limit * 1 || 100;
+    const skip = (page - 1) * limit;
 
-//     if (req.query.page) {
-//       // count the total number of tours
-//       const numTours = await Tour.countDocuments();
-//       console.log(numTours);
-//       if (skip >= numTours) throw new Error('This page does not exist');
-//     }
+    query = query.skip(skip).limit(limit);
 
-//     // Execute query
-//     const tours = await query;
-//     res.status(201).json({
-//       status: 'success',
-//       results: tours.length,
-//       data: {
-//         tour: tours,
-//       },
-//     });
-//   } catch (error) {
-//     res.status(404).json({
-//       status: 'fail',
-//       message: error,
-//     });
-//   }
-// };
+    if (req.query.page) {
+      // count the total number of tours
+      const numTours = await Tour.countDocuments();
+      console.log(numTours);
+      if (skip >= numTours) throw new Error('This page does not exist');
+    }
+
+    // Execute query
+    const tours = await query;
+    res.status(201).json({
+      status: 'success',
+      results: tours.length,
+      data: {
+        tour: tours,
+      },
+    });
+  } catch (error) {
+    res.status(404).json({
+      status: 'fail',
+      message: error,
+    });
+  }
+};
 
 // exports.createTour = catchAsync(async (req, res, next) => {
 //   const newTour = await Tour.create(req.body);

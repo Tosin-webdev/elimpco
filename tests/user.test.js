@@ -65,20 +65,4 @@ test('Should login existing user', async () => {
   // expect(response.body.token).toBe(user.token[1].token);
 });
 
-test('Should update a user profile', async () => {
-  // const response =
-  const response = await request(app)
-    .patch('/api/v1/users/updateMyPassword')
-    .set(
-      'Authorization',
-      `Bearer ${jwt.sign({ userOneId }, process.env.JWT_SECRET, {
-        expiresIn: process.env.JWT_EXPIRES_IN,
-      })}`
-    );
-  // .send({ passwordCurrent: 1234, password: 12345, passwordConfirm: 12345 })
-  // .expect(200);
-  // .send({ email: userOne.email, password: userOne.password })
-  // .expect(200);
-  console.log(response.body);
-  // expect(response.body.token).toBe(user.token[1].token);
-});
+
