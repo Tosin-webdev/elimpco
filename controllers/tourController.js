@@ -172,9 +172,10 @@ exports.getAllTours = async (req, res) => {
 
     // 1B) advanced filtering
     let queryStr = JSON.stringify(queryObj);
+    console.log(queryObj);
     queryStr = queryStr.replace(/\b(gte|gt|lte|lt)\b/g, (match) => `$${match}`);
-    // console.log(JSON.parse(queryStr));
-    let query = Tour.find(JSON.parse(queryStr));
+    console.log(JSON.parse(queryStr));
+    let query =  Tour.find(JSON.parse(queryStr));
 
     // const tours = await Tour.find();
 
@@ -216,6 +217,9 @@ exports.getAllTours = async (req, res) => {
       data: {
         tour: tours,
       },
+      pagination: {
+        currentPage: page
+      }
     });
   } catch (error) {
     res.status(404).json({
