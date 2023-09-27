@@ -160,6 +160,7 @@ exports.getDistances = catchAsync(async (req, res, next) => {
   });
 });
 
+// get all tours
 exports.getAllTours = async (req, res) => {
 
   try {
